@@ -57,7 +57,13 @@ class MyLayer extends JFrame implements ItemListener
         {
             public void mouseMoved(MouseEvent e)
             {
-                l4.setLocation(e.getX(), e.getY());
+                // Get the location of the JFrame on the screen
+                Point paneLocation = lp.getLocationOnScreen();
+                l4.setLocation(e.getX() - paneLocation.x, e.getY() - paneLocation.y);
+                System.out.println("Normal: "+getLocation()+" "+jp.getLocation()+" "+lp.getLocation());
+                System.out.println("Screen: "+getLocationOnScreen()+" "+jp.getLocationOnScreen()+" "+lp.getLocationOnScreen());
+                System.out.println(e.getX()+" "+e.getY());
+                System.out.println(e.getXOnScreen()+" "+e.getYOnScreen());
             }
         });
         r1.addItemListener(this);
@@ -87,5 +93,6 @@ public class LayeredPaneDemo {
         f.setVisible(true);
         f.setSize(500,500);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //System.out.println(f.getLocation().x+" "+f.getLocation().y);
     }
 }
